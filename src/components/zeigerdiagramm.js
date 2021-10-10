@@ -2,9 +2,7 @@ import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
 export default function Zeigerdiagramm(props) {
-  const maxBetrag = d3.max(props.store.zeigerarray, (zeiger) =>
-    Math.sqrt(zeiger.real ** 2 + zeiger.imaginary ** 2)
-  );
+  const maxBetrag = d3.max(props.store.zeigerarray, (zeiger) => zeiger.betrag);
 
   const scaleReal = d3
     .scaleLinear()
@@ -25,41 +23,33 @@ export default function Zeigerdiagramm(props) {
   useEffect(() => {
     d3.selectAll(".axis-zeiger").remove();
 
-    d3.select("#zeiger_svg")
+    d3.select("#zeiger-svg")
       .append("g")
       .attr("class", "axis-zeiger")
       .attr("transform", "translate(0, 300)")
       .call(realAxis);
-    d3.select("#zeiger_svg")
+    d3.select("#zeiger-svg")
       .append("g")
       .attr("class", "axis-zeiger")
       .attr("transform", "translate(300, 0)")
       .call(imaginaryAxis);
-  }, [props.store]);
+  }, [props.store, imaginaryAxis, realAxis]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mb-20">
       <div className="relative" style={{ width: 600, height: 600 }}>
         {props.store.zeigerarray.map((zeiger, index) => {
-          let betrag = Math.sqrt(zeiger.real ** 2 + zeiger.imaginary ** 2);
-          let angle = Math.atan(zeiger.imaginary / zeiger.real);
-          if (zeiger.real > 0 && zeiger.imaginary < 0) {
-            angle = Math.atan(zeiger.imaginary / zeiger.real) + 2 * Math.PI;
-          } else if (zeiger.real < 0) {
-            angle = Math.atan(zeiger.imaginary / zeiger.real) + Math.PI;
-          }
-          console.log(betrag, angle);
           return (
             <div
               className="absolute"
               style={{
-                width: scaleReal(betrag) - 300,
+                width: scaleReal(zeiger.betrag) - 300,
                 top: 297.5,
                 left: 300,
                 height: 5,
                 backgroundColor: "red",
                 transformOrigin: "left",
-                transform: `rotate(${-angle}rad)`,
+                transform: `rotate(${-zeiger.angle}rad)`,
               }}
               key={index}
             >
@@ -74,10 +64,16 @@ export default function Zeigerdiagramm(props) {
                   transform: "translate(3.5px, -12.5px)",
                 }}
               ></div>
+              <div
+                className="absolute right-0 -top-10 font-bold"
+                style={{ transform: `rotate(${zeiger.angle}rad)` }}
+              >
+                U{index}
+              </div>
             </div>
           );
         })}
-        <svg id="zeiger_svg" height="600px" width="600px" ref={svg}></svg>
+        <svg id="zeiger-svg" height="600px" width="600px" ref={svg}></svg>
       </div>
     </div>
   );
