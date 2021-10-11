@@ -48,6 +48,7 @@ export default function Zeigerdiagramm(props) {
             <motion.div
               initial={{ rotate: `0rad` }}
               animate={{ rotate: `-${zeiger.angle}rad` }}
+              // transition={{ duration: 1, repeat: Infinity }}
               className="absolute"
               style={{
                 width: scaleReal(zeiger.absolute) - 300,

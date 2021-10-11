@@ -46,7 +46,7 @@ function App() {
                 imaginary: imaginary,
                 absolute: absolute,
                 angle: angle,
-                color: palette[zeigernummer].hex(),
+                color: palette[zeigernummer + 1].hex(),
               },
             ],
           };
@@ -84,6 +84,11 @@ function App() {
         let newZeigerArray = [...prev.zeigerarray];
         newZeigerArray.splice(indexToDelete, 1);
         return { ...prev, zeigerarray: newZeigerArray };
+      case ACTIONS.RESET:
+        return {
+          zeigerarray: [],
+          frequenz: undefined,
+        };
       default:
         return prev;
     }

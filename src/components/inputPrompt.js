@@ -5,7 +5,7 @@ export default function InputPrompt(props) {
   const [state, setState] = useState({
     real: undefined,
     imaginary: undefined,
-    frequency: undefined,
+    frequency: 50,
     absolute: undefined,
     angle: undefined,
   });
@@ -25,12 +25,13 @@ export default function InputPrompt(props) {
         <input
           type="text"
           placeholder="in Hz"
-          className="h-5/6 bg-gray-900 hover:bg-gray-700"
+          value={state.frequency}
+          className="p-2 h-5/6 bg-gray-900 hover:bg-gray-700"
           onChange={(e) => {
             setState((prev) => ({ ...prev, frequency: e.target.value }));
           }}
         ></input>
-        <span></span>
+        <span className="md:text-2xl align-middle">Hz</span>
         <button
           type="button"
           className="md:ml-5 input-btn p-2"
@@ -50,7 +51,7 @@ export default function InputPrompt(props) {
         <input
           type="text"
           placeholder="Realteil"
-          className="h-5/6 bg-gray-900 hover:bg-gray-700"
+          className="p-2 h-5/6 bg-gray-900 hover:bg-gray-700"
           onChange={(e) => {
             setState((prev) => ({ ...prev, real: e.target.value }));
           }}
@@ -59,7 +60,7 @@ export default function InputPrompt(props) {
         <input
           type="text"
           placeholder="Imaginärteil"
-          className="h-5/6 bg-gray-900 hover:bg-gray-700"
+          className="p-2 h-5/6 bg-gray-900 hover:bg-gray-700"
           onChange={(e) => {
             setState((prev) => ({ ...prev, imaginary: e.target.value }));
           }}
@@ -86,11 +87,13 @@ export default function InputPrompt(props) {
         >
           Eingabe
         </button>
-        <h3 className="mb-4 md:text-xl col-span-5">In der Polarform:</h3>
+        <h3 className="mb-4 md:mt-2 md:text-xl col-span-5">
+          In der Polarform:
+        </h3>
         <input
           type="text"
           placeholder="Betrag"
-          className="h-5/6 bg-gray-900 hover:bg-gray-700"
+          className="p-2 h-5/6 bg-gray-900 hover:bg-gray-700"
           onChange={(e) => {
             setState((prev) => ({ ...prev, absolute: e.target.value }));
           }}
@@ -99,7 +102,7 @@ export default function InputPrompt(props) {
         <input
           type="text"
           placeholder="Winkel in Grad"
-          className="h-5/6 bg-gray-900 hover:bg-gray-700"
+          className="p-2 h-5/6 bg-gray-900 hover:bg-gray-700 col-span-2"
           onChange={(e) => {
             setState((prev) => ({
               ...prev,
@@ -107,7 +110,6 @@ export default function InputPrompt(props) {
             }));
           }}
         ></input>
-        <span></span>
         <button
           type="button"
           className="md:ml-5 input-btn p-2"

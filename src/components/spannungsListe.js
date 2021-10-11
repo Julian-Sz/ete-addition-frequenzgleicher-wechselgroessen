@@ -8,8 +8,11 @@ const roundToX = (num = 0, X = 20) =>
 
 export default function SpannungsListe(props) {
   return (
-    <div>
-      <ul className="grid grid-cols-5 w-full">
+    <div className="my-10">
+      <ul
+        className="grid w-full gap-y-2"
+        style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr min-content" }}
+      >
         <strong>Zeigernummer</strong>
         <span>Spitzenspannung in Volt</span>
         <span>Winkel in Grad</span>
@@ -30,7 +33,7 @@ export default function SpannungsListe(props) {
               <span className="w-8">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="hover:bg-gray-300 hover:text-black rounded-xl p-1 cursor-pointer"
+                  className="rounded-xl p-1 cursor-pointer input-btn"
                   fill="currentColor"
                   viewBox="0 0 16 16"
                   onClick={() => {
@@ -51,6 +54,26 @@ export default function SpannungsListe(props) {
           );
         })}
       </ul>
+      <button
+        className="mt-10 p-5 danger-btn"
+        onClick={() => {
+          props.dispatch({ type: ACTIONS.RESET });
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          className="inline w-10 mr-2"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
+          />
+          <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+        </svg>
+        <span>Reset</span>
+      </button>
     </div>
   );
 }
