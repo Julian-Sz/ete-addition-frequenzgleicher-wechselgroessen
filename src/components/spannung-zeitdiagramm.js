@@ -44,6 +44,20 @@ export default function SpannungZeitdiagramm(props) {
       .attr("transform", `translate(${svgPadding}, 0)`)
       .call(spannungAxis);
 
+    d3.select("#spannung-svg")
+      .append("text")
+      .attr("x", 0)
+      .attr("y", 30)
+      .style("fill", "white")
+      .text("U [V]");
+
+    d3.select("#spannung-svg")
+      .append("text")
+      .attr("x", zeitSVG.current.getBoundingClientRect().width - 60)
+      .attr("y", 350)
+      .style("fill", "white")
+      .text("t [ms]");
+
     for (let zeiger of props.store.zeigerarray) {
       const sine = d3.range(0, viewedTime, 0.0001).map((t) => {
         return [

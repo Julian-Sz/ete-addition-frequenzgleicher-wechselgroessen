@@ -66,7 +66,7 @@ function App() {
                 imaginary: imaginary,
                 absolute: absolute,
                 angle: angle,
-                color: palette[zeigernummer].hex(),
+                color: palette[zeigernummer + 1].hex(),
               },
             ],
           };

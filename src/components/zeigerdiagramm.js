@@ -38,6 +38,18 @@ export default function Zeigerdiagramm(props) {
       .attr("class", "axis-zeiger")
       .attr("transform", "translate(300, 0)")
       .call(imaginaryAxis);
+    d3.select("#zeiger-svg")
+      .append("text")
+      .attr("x", 240)
+      .attr("y", 30)
+      .style("fill", "white")
+      .text("Im");
+    d3.select("#zeiger-svg")
+      .append("text")
+      .attr("x", 550)
+      .attr("y", 330)
+      .style("fill", "white")
+      .text("Re");
   }, [props.store, imaginaryAxis, realAxis]);
 
   return (
