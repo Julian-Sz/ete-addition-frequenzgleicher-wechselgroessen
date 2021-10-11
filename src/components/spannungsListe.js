@@ -17,7 +17,8 @@ export default function SpannungsListe(props) {
           return (
             <React.Fragment key={zeiger.nummer}>
               <strong>
-                U<sub>{zeiger.nummer}</sub>
+                <u>U</u>
+                <sub>{zeiger.nummer}</sub>
               </strong>
               <span>{roundToX(zeiger.betrag, 4)} V</span>
               <span>{roundToX((zeiger.angle * 180) / Math.PI, 3)}</span>

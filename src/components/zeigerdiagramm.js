@@ -75,7 +75,8 @@ export default function Zeigerdiagramm(props) {
                   color: zeiger.color,
                 }}
               >
-                U<sub>{zeiger.nummer}</sub>
+                <u>U</u>
+                <sub>{zeiger.nummer}</sub>
               </div>
             </motion.div>
           );
