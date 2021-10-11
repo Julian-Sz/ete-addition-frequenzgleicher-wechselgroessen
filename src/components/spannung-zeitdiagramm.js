@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 export default function SpannungZeitdiagramm(props) {
-  const maxBetrag = d3.max(props.store.zeigerarray, (zeiger) => zeiger.betrag);
+  const maxBetrag = d3.max(
+    props.store.zeigerarray,
+    (zeiger) => zeiger.absolute
+  );
 
-  const svgWidth = 1000;
   const svgHeight = 600;
   const svgPadding = 50;
   const viewedTime = 0.02;
@@ -17,14 +19,16 @@ export default function SpannungZeitdiagramm(props) {
 
   const spannungAxis = d3.axisLeft().scale(scaleSpannung);
 
-  const scaleTime = d3
-    .scaleLinear()
-    .domain([0, viewedTime])
-    .range([svgPadding, 1000]);
-
-  const timeAxis = d3.axisBottom().scale(scaleTime);
+  const zeitSVG = useRef(null);
 
   useEffect(() => {
+    const scaleTime = d3
+      .scaleLinear()
+      .domain([0, viewedTime])
+      .range([svgPadding, zeitSVG.current.getBoundingClientRect().width]);
+
+    const timeAxis = d3.axisBottom().scale(scaleTime);
+
     d3.selectAll(".axis-spannung").remove();
     d3.selectAll(".spannung-zeit-path").remove();
 
@@ -33,6 +37,7 @@ export default function SpannungZeitdiagramm(props) {
       .attr("class", "axis-spannung")
       .attr("transform", `translate(0, 300)`)
       .call(timeAxis);
+
     d3.select("#spannung-svg")
       .append("g")
       .attr("class", "axis-spannung")
@@ -43,7 +48,8 @@ export default function SpannungZeitdiagramm(props) {
       const sine = d3.range(0, viewedTime, 0.0001).map((t) => {
         return [
           t,
-          zeiger.betrag * Math.sin(2 * Math.PI * frequency * t + zeiger.angle),
+          zeiger.absolute *
+            Math.sin(2 * Math.PI * frequency * t + zeiger.angle),
         ];
       });
 
@@ -66,21 +72,15 @@ export default function SpannungZeitdiagramm(props) {
         .attr("fill", "none")
         .attr("stroke-width", "5");
     }
-  }, [
-    props.store,
-    frequency,
-    scaleSpannung,
-    scaleTime,
-    spannungAxis,
-    timeAxis,
-  ]);
+  }, [props.store, frequency, scaleSpannung, spannungAxis]);
 
   return (
     <div className="flex flex-col items-center">
       <svg
         id="spannung-svg"
-        width={svgWidth + svgPadding}
+        className="w-full"
         height={svgHeight}
+        ref={zeitSVG}
       ></svg>
     </div>
   );

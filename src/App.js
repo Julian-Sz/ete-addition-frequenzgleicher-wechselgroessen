@@ -30,7 +30,7 @@ function App() {
           // console.log(prev.zeigerarray);
           let real = action.payload.real;
           let imaginary = action.payload.imaginary;
-          let betrag = Math.sqrt(real ** 2 + imaginary ** 2);
+          let absolute = Math.sqrt(real ** 2 + imaginary ** 2);
           let angle = Math.atan(imaginary / real);
           if (real > 0 && imaginary < 0) {
             angle = Math.atan(imaginary / real) + 2 * Math.PI;
@@ -44,7 +44,27 @@ function App() {
                 nummer: zeigernummer,
                 real: real,
                 imaginary: imaginary,
-                betrag: betrag,
+                absolute: absolute,
+                angle: angle,
+                color: palette[zeigernummer].hex(),
+              },
+            ],
+          };
+        } else if (action.payload.type === "polar") {
+          let absolute = parseFloat(action.payload.absolute);
+          let angle = parseFloat(action.payload.angle);
+
+          let imaginary = Math.sin(angle) * absolute;
+          let real = Math.cos(angle) * absolute;
+
+          return {
+            zeigerarray: [
+              ...prev.zeigerarray,
+              {
+                nummer: zeigernummer,
+                real: real,
+                imaginary: imaginary,
+                absolute: absolute,
                 angle: angle,
                 color: palette[zeigernummer].hex(),
               },
@@ -74,20 +94,23 @@ function App() {
   });
 
   return (
-    <div className="App flex flex-col justify-center">
-      <header>
-        <h1 className="text-3xl">
-          Addition frequenzgleicher Wechselgrößen - Visualisierer
-        </h1>
-      </header>
-      <main>
-        <InputPrompt dispatch={dispatch} />
-        <Zeigerdiagramm store={store} dispatch={dispatch} />
-        <SpannungZeitdiagramm store={store} dispatch={dispatch} />
-        <SpannungsListe store={store} dispatch={dispatch} />
-      </main>
-      <footer>©2021 by Julian Szigethy</footer>
-    </div>
+    <>
+      <div className="backgroundElement h-full w-full absolute"></div>
+      <div className="App flex flex-col justify-center md:my-10 p-2 md:p-10 relative w-screen md:w-none">
+        <header>
+          <h1 className="text-xl md:text-3xl">
+            Addition frequenzgleicher Wechselgrößen - Visualisierer
+          </h1>
+        </header>
+        <main>
+          <InputPrompt dispatch={dispatch} />
+          <Zeigerdiagramm store={store} dispatch={dispatch} />
+          <SpannungZeitdiagramm store={store} dispatch={dispatch} />
+          <SpannungsListe store={store} dispatch={dispatch} />
+        </main>
+        <footer>©2021 by Julian Szigethy</footer>
+      </div>
+    </>
   );
 }
 

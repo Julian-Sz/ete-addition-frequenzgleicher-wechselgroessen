@@ -1,8 +1,10 @@
-import { dispatch } from "d3-dispatch";
 import React from "react";
 import { ACTIONS } from "./../App.js";
 
-const roundToX = (num = 0, X = 20) => +(Math.round(num + `e${X}`) + `e-${X}`);
+const roundToX = (num = 0, X = 20) =>
+  isNaN(+(Math.round(num + `e${X}`) + `e-${X}`))
+    ? 0
+    : +(Math.round(num + `e${X}`) + `e-${X}`);
 
 export default function SpannungsListe(props) {
   return (
@@ -20,15 +22,15 @@ export default function SpannungsListe(props) {
                 <u>U</u>
                 <sub>{zeiger.nummer}</sub>
               </strong>
-              <span>{roundToX(zeiger.betrag, 4)} V</span>
+              <span>{roundToX(zeiger.absolute, 4)} V</span>
               <span>{roundToX((zeiger.angle * 180) / Math.PI, 3)}</span>
               <span>
-                {zeiger.real} + {zeiger.imaginary} * i
+                {roundToX(zeiger.real, 3)} + {roundToX(zeiger.imaginary, 3)} * i
               </span>
               <span className="w-8">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="hover:bg-gray-300 rounded-xl p-1 cursor-pointer"
+                  className="hover:bg-gray-300 hover:text-black rounded-xl p-1 cursor-pointer"
                   fill="currentColor"
                   viewBox="0 0 16 16"
                   onClick={() => {

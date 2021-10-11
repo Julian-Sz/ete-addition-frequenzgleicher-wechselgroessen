@@ -3,19 +3,23 @@ import * as d3 from "d3";
 import { motion } from "framer-motion";
 
 export default function Zeigerdiagramm(props) {
-  const maxBetrag = d3.max(props.store.zeigerarray, (zeiger) => zeiger.betrag);
+  const maxBetrag = d3.max(
+    props.store.zeigerarray,
+    (zeiger) => zeiger.absolute
+  );
 
   const scaleReal = d3
     .scaleLinear()
     .domain([-1 * maxBetrag - maxBetrag * 0.1, maxBetrag + maxBetrag * 0.1])
     .range([0, 600]);
 
+  // console.log("maxBetrag", typeof maxBetrag);
+  // console.log("realScaleDomain", [maxBetrag + maxBetrag * 0.1]);
+
   const scaleImaginary = d3
     .scaleLinear()
     .domain([maxBetrag + maxBetrag * 0.1, -1 * maxBetrag - maxBetrag * 0.1])
     .range([0, 600]);
-
-  console.log(maxBetrag);
 
   const realAxis = d3.axisBottom().scale(scaleReal);
   const imaginaryAxis = d3.axisLeft().scale(scaleImaginary);
@@ -40,14 +44,13 @@ export default function Zeigerdiagramm(props) {
     <div className="flex flex-col items-center mb-20">
       <div className="relative" style={{ width: 600, height: 600 }}>
         {props.store.zeigerarray.map((zeiger, index) => {
-          console.log(zeiger.color);
           return (
             <motion.div
               initial={{ rotate: `0rad` }}
               animate={{ rotate: `-${zeiger.angle}rad` }}
               className="absolute"
               style={{
-                width: scaleReal(zeiger.betrag) - 300,
+                width: scaleReal(zeiger.absolute) - 300,
                 top: 297.5,
                 left: 300,
                 height: 5,
