@@ -9,7 +9,6 @@ export default function SpannungZeitdiagramm(props) {
   const svgPadding = 50;
   const viewedTime = 0.02;
   const frequency = props.store.frequency; // in ms
-  console.log(props.store.frequency);
 
   const scaleSpannung = d3
     .scaleLinear()
@@ -47,7 +46,6 @@ export default function SpannungZeitdiagramm(props) {
         ];
       });
 
-      console.log(sine);
       const line = d3
         .line()
         .context(null)
@@ -62,7 +60,7 @@ export default function SpannungZeitdiagramm(props) {
         .append("g")
         .append("path")
         .attr("d", line(sine))
-        .attr("stroke", "black")
+        .attr("stroke", zeiger.color)
         .attr("fill", "none")
         .attr("stroke-width", "5");
     }

@@ -4,6 +4,22 @@ import "./index.css";
 import InputPrompt from "./components/inputPrompt";
 import Zeigerdiagramm from "./components/zeigerdiagramm";
 import SpannungZeitdiagramm from "./components/spannung-zeitdiagramm";
+import { max as d3max } from "d3";
+import distinctColors from "distinct-colors";
+
+// const COLORARRAY = [
+//   "#0652DD",
+//   "#1289A7",
+//   "#A3CB38",
+//   "#F79F1F",
+//   "#9980FA",
+//   "#EA2027",
+//   "#6F1E51",
+//   "#006266",
+//   "#009432",
+// ];
+
+var palette = distinctColors({ count: 100 });
 
 export const ACTIONS = {
   ADD_ZEIGER: "add-zeiger",
@@ -15,8 +31,13 @@ function App() {
   const reducer = (prev, action) => {
     switch (action.type) {
       case ACTIONS.ADD_ZEIGER:
+        let zeigernrMax = d3max(prev.zeigerarray, (zeiger) => zeiger.nummer);
+        let zeigernummer = zeigernrMax + 1;
+        if (isNaN(zeigernummer)) {
+          zeigernummer = 0;
+        }
         if (action.payload.type === "kartesisch") {
-          console.log(prev.zeigerarray);
+          // console.log(prev.zeigerarray);
           let real = action.payload.real;
           let imaginary = action.payload.imaginary;
           let betrag = Math.sqrt(real ** 2 + imaginary ** 2);
@@ -30,10 +51,12 @@ function App() {
             zeigerarray: [
               ...prev.zeigerarray,
               {
+                nummer: zeigernummer,
                 real: real,
                 imaginary: imaginary,
                 betrag: betrag,
                 angle: angle,
+                color: palette[zeigernummer].hex(),
               },
             ],
           };
