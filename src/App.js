@@ -13,6 +13,7 @@ var palette = distinctColors({ count: 100 });
 export const ACTIONS = {
   ADD_ZEIGER: "add-zeiger",
   SET_FREQUENCY: "set-frequency",
+  DELETE_ZEIGER: "delete-zeiger",
   RESET: "reset",
 };
 
@@ -53,6 +54,16 @@ function App() {
         break;
       case ACTIONS.SET_FREQUENCY:
         return { ...prev, frequency: action.payload };
+      case ACTIONS.DELETE_ZEIGER:
+        let indexToDelete = undefined;
+        for (let index in prev.zeigerarray) {
+          if (prev.zeigerarray[index].nummer === action.payload) {
+            indexToDelete = index;
+          }
+        }
+        let newZeigerArray = [...prev.zeigerarray];
+        newZeigerArray.splice(indexToDelete, 1);
+        return { ...prev, zeigerarray: newZeigerArray };
       default:
         return prev;
     }

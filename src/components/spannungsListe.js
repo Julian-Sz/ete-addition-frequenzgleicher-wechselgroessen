@@ -1,4 +1,6 @@
+import { dispatch } from "d3-dispatch";
 import React from "react";
+import { ACTIONS } from "./../App.js";
 
 const roundToX = (num = 0, X = 20) => +(Math.round(num + `e${X}`) + `e-${X}`);
 
@@ -28,6 +30,12 @@ export default function SpannungsListe(props) {
                   className="hover:bg-gray-300 rounded-xl p-1 cursor-pointer"
                   fill="currentColor"
                   viewBox="0 0 16 16"
+                  onClick={() => {
+                    props.dispatch({
+                      type: ACTIONS.DELETE_ZEIGER,
+                      payload: zeiger.nummer,
+                    });
+                  }}
                 >
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                   <path
