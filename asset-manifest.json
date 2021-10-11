@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.1aaa010d.chunk.css",
+    "main.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.e7670235.chunk.js",
+    "main.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.e7670235.chunk.js.map",
+    "runtime-main.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/runtime-main.65d7f5d8.js",
+    "runtime-main.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/runtime-main.65d7f5d8.js.map",
+    "static/js/2.80a2a200.chunk.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/2.80a2a200.chunk.js",
+    "static/js/2.80a2a200.chunk.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/2.80a2a200.chunk.js.map",
+    "static/js/3.99d82876.chunk.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/3.99d82876.chunk.js",
+    "static/js/3.99d82876.chunk.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/3.99d82876.chunk.js.map",
+    "index.html": "/ete-addition-frequenzgleicher-wechselgroessen/index.html",
+    "static/css/main.1aaa010d.chunk.css.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.1aaa010d.chunk.css.map",
+    "static/js/2.80a2a200.chunk.js.LICENSE.txt": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/2.80a2a200.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65d7f5d8.js",
+    "static/js/2.80a2a200.chunk.js",
+    "static/css/main.1aaa010d.chunk.css",
+    "static/js/main.e7670235.chunk.js"
+  ]
+}
