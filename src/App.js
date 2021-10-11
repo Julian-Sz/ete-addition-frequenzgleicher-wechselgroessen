@@ -4,20 +4,9 @@ import "./index.css";
 import InputPrompt from "./components/inputPrompt";
 import Zeigerdiagramm from "./components/zeigerdiagramm";
 import SpannungZeitdiagramm from "./components/spannung-zeitdiagramm";
+import SpannungsListe from "./components/spannungsListe";
 import { max as d3max } from "d3";
 import distinctColors from "distinct-colors";
-
-// const COLORARRAY = [
-//   "#0652DD",
-//   "#1289A7",
-//   "#A3CB38",
-//   "#F79F1F",
-//   "#9980FA",
-//   "#EA2027",
-//   "#6F1E51",
-//   "#006266",
-//   "#009432",
-// ];
 
 var palette = distinctColors({ count: 100 });
 
@@ -84,6 +73,7 @@ function App() {
         <InputPrompt dispatch={dispatch} />
         <Zeigerdiagramm store={store} dispatch={dispatch} />
         <SpannungZeitdiagramm store={store} dispatch={dispatch} />
+        <SpannungsListe store={store} dispatch={dispatch} />
       </main>
       <footer>©2021 by Julian Szigethy</footer>
     </div>

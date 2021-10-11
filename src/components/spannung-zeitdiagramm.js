@@ -26,6 +26,7 @@ export default function SpannungZeitdiagramm(props) {
 
   useEffect(() => {
     d3.selectAll(".axis-spannung").remove();
+    d3.selectAll(".spannung-zeit-path").remove();
 
     d3.select("#spannung-svg")
       .append("g")
@@ -58,6 +59,7 @@ export default function SpannungZeitdiagramm(props) {
 
       d3.select("#spannung-svg")
         .append("g")
+        .attr("class", "spannung-zeit-path")
         .append("path")
         .attr("d", line(sine))
         .attr("stroke", zeiger.color)
