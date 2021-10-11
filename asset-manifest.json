@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.7850cd5b.chunk.css",
-    "main.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.e3d9b89f.chunk.js",
-    "main.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.e3d9b89f.chunk.js.map",
+    "main.css": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.497a9552.chunk.css",
+    "main.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.ad631c7e.chunk.js",
+    "main.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/main.ad631c7e.chunk.js.map",
     "runtime-main.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/runtime-main.65d7f5d8.js",
     "runtime-main.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/runtime-main.65d7f5d8.js.map",
     "static/js/2.b6d9d2a0.chunk.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/2.b6d9d2a0.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.99d82876.chunk.js": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/3.99d82876.chunk.js",
     "static/js/3.99d82876.chunk.js.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/3.99d82876.chunk.js.map",
     "index.html": "/ete-addition-frequenzgleicher-wechselgroessen/index.html",
-    "static/css/main.7850cd5b.chunk.css.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.7850cd5b.chunk.css.map",
+    "static/css/main.497a9552.chunk.css.map": "/ete-addition-frequenzgleicher-wechselgroessen/static/css/main.497a9552.chunk.css.map",
     "static/js/2.b6d9d2a0.chunk.js.LICENSE.txt": "/ete-addition-frequenzgleicher-wechselgroessen/static/js/2.b6d9d2a0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.65d7f5d8.js",
     "static/js/2.b6d9d2a0.chunk.js",
-    "static/css/main.7850cd5b.chunk.css",
-    "static/js/main.e3d9b89f.chunk.js"
+    "static/css/main.497a9552.chunk.css",
+    "static/js/main.ad631c7e.chunk.js"
   ]
 }
